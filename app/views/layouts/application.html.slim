@@ -7,9 +7,17 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload' 
   body
-    - if user_signed_in?
-      = current_user.email
-      = link_to destroy_user_session_path, method: :delete do
-        |Sign Out
+    .wrapper
+      nav.navbar.navbar-inverse.navbar-static-top
+        .container
+          - if user_signed_in?
+            = link_to current_user.email, root_path
+            '    
+            = link_to destroy_user_session_path, method: :delete do
+              |logout
 
-    = yield
+      .container
+        - if flash[:notice]
+          .alert.alert-warning
+            = flash[:notice]
+        = yield

@@ -1,0 +1,24 @@
+h2 = "Bank Account for user #{current_user.email}"
+
+= link_to 'Create Transaction', new_account_transaction_path
+
+table
+  tr
+    td Account Number
+    td = @bank_account.number
+  tr
+    td Account Balance
+    td = @bank_account.balance
+
+h3 Transactions history
+
+table
+  thead
+    tr
+      th Operation Type
+      th Amount
+  tbody
+    - @bank_account.account_transactions.each do |account_transaction|
+      tr
+        td = account_transaction.operation_type
+        td = account_transaction.amount
