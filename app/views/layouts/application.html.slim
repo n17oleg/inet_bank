@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title InetBank
+    = csrf_meta_tags
+
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload' 
+  body
+    - if user_signed_in?
+      = current_user.email
+      = link_to destroy_user_session_path, method: :delete do
+        |Sign Out
+
+    = yield
