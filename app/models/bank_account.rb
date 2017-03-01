@@ -14,8 +14,11 @@ class BankAccount < ApplicationRecord
       account_transaction.save
       update_balance(account_transaction)
     end
-    if !account_transaction.id
-      # send mail
+
+    if account_transaction.id
+      AccountTransactionsMailer.success(user.id).deliver
+    else
+      AccountTransactionsMailer.fail(user.id).deliver
     end
     account_transaction
   end

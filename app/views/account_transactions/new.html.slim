@@ -1,6 +1,6 @@
 h2 Create account transaction
 
 = simple_form_for @account_transaction, method: :post do |f|
-  = f.input :operation_type, collection: AccountTransaction::OPERATION_TYPES
+  = f.input :operation_type, collection: AccountTransaction::OPERATION_TYPES, include_blank: false
   = f.input :amount
   = f.button :submit
